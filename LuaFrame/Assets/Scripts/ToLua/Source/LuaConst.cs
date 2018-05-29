@@ -2,7 +2,7 @@
 
 public static class LuaConst
 {
-    public static string luaDir = Application.dataPath + "/Scripts/Lua";
+    public static string luaDir = Application.dataPath + "/../../../GameRes/Lua";
     public static string toluaDir = Application.dataPath + "/Scripts/ToLua/Lua";
 
 #if UNITY_STANDALONE

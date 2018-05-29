@@ -1,0 +1,26 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2015
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaFrame", "LuaFrame.csproj", "{71575EA4-2456-EE6C-C6C5-89F98AA37034}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LuaFrame.Editor", "LuaFrame.Editor.csproj", "{2FBB8CFF-447F-7E13-8864-553F174270FB}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{71575EA4-2456-EE6C-C6C5-89F98AA37034}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{71575EA4-2456-EE6C-C6C5-89F98AA37034}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{71575EA4-2456-EE6C-C6C5-89F98AA37034}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{71575EA4-2456-EE6C-C6C5-89F98AA37034}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2FBB8CFF-447F-7E13-8864-553F174270FB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2FBB8CFF-447F-7E13-8864-553F174270FB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2FBB8CFF-447F-7E13-8864-553F174270FB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2FBB8CFF-447F-7E13-8864-553F174270FB}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

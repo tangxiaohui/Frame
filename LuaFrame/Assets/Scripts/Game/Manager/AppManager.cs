@@ -1,15 +1,20 @@
-﻿using System.Collections;
+﻿using LuaInterface;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class AppManager : MonoBehaviour {
+public class AppManager : MonoBehaviour
+{
 
+    private LuaState luaState;
     private void Awake()
     {
         DontDestroyOnLoad(this.gameObject);
     }
-    void Start () {
+    void Start()
+    {
         Initialize();
+        Debug.Log(LuaConst.luaDir+"\n"+LuaConst.toluaDir);
 
     }
     /// <summary>
@@ -45,9 +50,9 @@ public class AppManager : MonoBehaviour {
     void InitializePath()
     {
 #if UNITY_STANDALONE || UNITY_EDITOR
-        Constant.resPath= Application.dataPath + "/../../GameRes/Lua";
+        Constant.resPath = Application.dataPath + "/../../GameRes/Lua";
         Constant.luaPath = Constant.resPath + "/Lua";
-        Constant.abPath =  Constant.resPath + "/AssetBundles/Windows/";
+        Constant.abPath = Constant.resPath + "/AssetBundles/Windows/";
 #endif
     }
     #endregion
@@ -55,6 +60,7 @@ public class AppManager : MonoBehaviour {
     void InitilaizeRes()
     {
         CheckNeedUpdate();
+        StartCoroutine(InitializeToLua());
 
     }
     #endregion
@@ -64,5 +70,25 @@ public class AppManager : MonoBehaviour {
     /// </summary>
     public void CheckNeedUpdate()
     {
+
     }
+
+    IEnumerator InitializeToLua()
+    {
+        luaState = new LuaState();
+        Utils.AddCustomLuaPath(luaState, GetCustomLuaPath());
+        luaState.Start();
+        LuaBinder.Bind(luaState);
+
+        yield return null;
+    }
+    private string GetCustomLuaPath()
+    {
+#if WINDOWS_BUILD
+        return Application.dataPath + "/../GameRes/Lua";
+#else
+        return null;
+#endif
+    }
+
 }
