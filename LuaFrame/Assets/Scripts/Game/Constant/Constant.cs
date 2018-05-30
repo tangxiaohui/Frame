@@ -13,6 +13,4 @@ public sealed class Constant : MonoBehaviour {
     public static string luaPath = "";
     //资源bundle 路径
     public static string abPath = "";
-     
-	
 }

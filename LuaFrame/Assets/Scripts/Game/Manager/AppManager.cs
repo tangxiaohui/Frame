@@ -5,16 +5,25 @@ using UnityEngine;
 
 public class AppManager : MonoBehaviour
 {
-
+    private static AppManager instance;
     private LuaState luaState;
+
+    public static AppManager Instance
+    {
+        get
+        {
+            return instance;
+        }
+    }
+
     private void Awake()
     {
+        instance = this;
         DontDestroyOnLoad(this.gameObject);
     }
     void Start()
     {
         Initialize();
-        Debug.Log(LuaConst.luaDir+"\n"+LuaConst.toluaDir);
 
     }
     /// <summary>
@@ -79,7 +88,8 @@ public class AppManager : MonoBehaviour
         Utils.AddCustomLuaPath(luaState, GetCustomLuaPath());
         luaState.Start();
         LuaBinder.Bind(luaState);
-
+        LuaManager.Instance.Init(luaState);
+        LuaManager.Instance.CallGameStart();
         yield return null;
     }
     private string GetCustomLuaPath()
@@ -89,6 +99,13 @@ public class AppManager : MonoBehaviour
 #else
         return null;
 #endif
+    }
+
+    private void Update()
+    {
+      //  Debug.Log(LuaManager.Instance.gameUpdate);
+        LuaManager.Instance.gameUpdate.Call();
+
     }
 
 }
