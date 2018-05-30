@@ -1,0 +1,91 @@
+--
+-- User: fbmly
+-- Date: 5/5/17
+-- Time: 10:27 AM
+--
+--
+--require "Object.LuaObject"
+--require "Collection.DataStack"
+--local Utility = require "Utils.Utility"
+--
+--local SpawnPool = Class(LuaObject)
+--
+--function SpawnPool:Ctor(prefab, poolParent, maxInstances)
+--    self.prefab = prefab
+--    self.poolParent = poolParent
+--    self.maxInstances = maxInstances or 10
+--
+--    -- 池里的实例(非激活) --
+--    self.instancePoolList = DataStack.New()
+--
+--    -- 被取出后的实例(激活) --
+--    self.spawnedInstances = {}
+--    self.spawnedCount = 0
+--end
+--
+--function SpawnPool:Preload(count)
+--    count = Utility.Clamp(count, 0, self.maxInstances)
+--    if count == 0 then
+--        return
+--    end
+--
+--
+--end
+--
+--function SpawnPool:Spawn(parent, active)
+--    local poolCount = self.instancePoolList:Count()
+--    local currentCount = poolCount + self.spawnedCount
+--    if currentCount >= self.maxInstances then
+--        error("超出最大实例化数量")
+--    end
+--
+--    -- 如果poolCount为0
+--    local obj
+--
+--    if poolCount == 0 then
+--        obj = UnityEngine.Object.Instantiate(self.prefab)
+--    else
+--        obj = self.instancePoolList:Pop()
+--    end
+--
+--    if obj ~= nil then
+--
+--        if parent ~= nil then
+--            obj.transform:SetParent(parent)
+--        end
+--
+--        if active then
+--            obj:SetActive(true)
+--        end
+--
+--        self.spawnedInstances[obj] = true
+--        self.spawnedCount = self.spawnedCount + 1
+--        obj:SendMessage("OnSpawned", 1)
+--    end
+--
+--    return obj
+--end
+--
+--function SpawnPool:Despawn(instance)
+--    if instance == nil then
+--        return
+--    end
+--
+--    if self.spawnedCount == 0 then
+--        return
+--    end
+--
+--    local isSpawned = self.spawnedInstances[instance]
+--    if not isSpawned then
+--        error("这个实例不是从这里 Spawn 出去的!")
+--    end
+--
+--    instance:SetActive(false)
+--    instance.transform:SetParent(self.poolParent)
+--
+--    self.instancePoolList:Push(instance)
+--    self.spawnedInstances[instance] = nil
+--    self.spawnedCount = self.spawnedCount - 1
+--end
+--
+--return SpawnPool

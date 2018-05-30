@@ -1,21 +1,41 @@
 
+local BaseNodeClass = require "Framework.Base.Node"
 
-print("sdgksdfiosdfhsdfhlsdfjlsdjf")
-function ttt()
-	print("ttt")
-	
-end
--- 入口函数
-function _G.Start()
-	print("55555555555555")
-	UpdateBeat:Add(ttt)
 
-end
--- 入口函数
-function _G.Update()
-	print("599999999999999999")
-end
--- 程序关闭时调用
-function onDestroy()
+local GeneralItem = Class(BaseNodeClass)
 
+function GeneralItem:Ctor(parentTransform, itemID, itemNum, itemColor, itemLevel, gemId1, gemId2)
+    hzj_print("PPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPPP")
 end
+
+
+function GeneralItem:OnInit()
+    -- 加载界面(只走一次)
+    print("OnInit")
+    utility.LoadNewGameObjectAsync('UI/Prefabs/MyGeneralItem', function(go)
+        self:BindComponent(go, false)
+    end)
+end
+
+
+
+function GeneralItem:OnComponentReady()
+    self:InitControls()
+end
+
+
+function GeneralItem:OnResume()
+    GeneralItem.base.OnResume(self)
+    self:LinkComponent(self.parentTransform, true)
+    SetControls(self)
+    self:RegisterControlEvents()
+end
+
+function GeneralItem:OnPause()
+    GeneralItem.base.OnPause(self)
+    ResetControls(self)
+    self:UnregisterControlEvents()
+end
+
+return GeneralItem
+
