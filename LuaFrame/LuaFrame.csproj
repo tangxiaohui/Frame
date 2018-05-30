@@ -299,6 +299,7 @@
   <ItemGroup>
     <Compile Include="Assets\Scripts\Game\Constant\Constant.cs" />
     <Compile Include="Assets\Scripts\Game\Manager\AppManager.cs" />
+    <Compile Include="Assets\Scripts\Game\Manager\LuaManager.cs" />
     <Compile Include="Assets\Scripts\ToLua\BaseType\LuaInterface_EventObjectWrap.cs" />
     <Compile Include="Assets\Scripts\ToLua\BaseType\LuaInterface_LuaConstructorWrap.cs" />
     <Compile Include="Assets\Scripts\ToLua\BaseType\LuaInterface_LuaFieldWrap.cs" />
